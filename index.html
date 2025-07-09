@@ -1,116 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
+  <meta charset="UTF-8">
+  <title>Portal de Dashboards - Diretoria</title>
   <style>
     body {
-
       font-family: Arial, sans-serif;
-    background: url('https://images.pexels.com/photos/974314/pexels-photo-974314.jpeg?cs=srgb&dl=pexels-timmossholder-974314.jpg&fm=jpg') no-repeat center center fixed;
-    background-size: cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-  }
+      background-image: url('https://alvorada945.com.br/wp-content/uploads/2024/05/Brazil-Agro.jpg');
+      background-size: cover;
+      background-position: center;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
 
-  .login-container {
-    background: rgba(255, 255, 255, 0.95); /* fundo branco semi-transparente para melhor leitura */
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    width: 300px;
-  }
+    .container {
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 30px 50px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      text-align: center;
+      max-width: 800px;
+    }
 
-    .login-container img {
-      width: 200px; /* aumentar valor da imagem */
+    .logo {
+      width: 220px;
       margin-bottom: 20px;
     }
 
-    .login-container h2 {
-      margin-bottom: 20px;
+    .welcome-message {
+      font-size: 18px;
+      color: #333;
+      margin-bottom: 25px;
+      line-height: 1.6;
     }
 
-    input[type="text"], input[type="password"] {
+    .button-group {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      justify-content: center;
+    }
+
+    .button-group a button {
       width: 100%;
-      padding: 10px;
-      margin-bottom: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    button {
-      padding: 10px 20px;
+      padding: 12px 20px;
+      font-size: 15px;
+      border-radius: 6px;
+      border: none;
       background-color: #007bff;
       color: white;
-      border: none;
-      border-radius: 5px;
       cursor: pointer;
-      width: 100%;
-      margin-top: 10px;
+      transition: 0.3s;
+      position: relative;
     }
 
-    button:hover {
+    .button-group a button:hover {
       background-color: #0056b3;
     }
 
-    .remember {
-      display: flex;
-      align-items: center;
-      justify-content: left;
-      font-size: 14px;
-      margin-bottom: 10px;
+    .button-group a:hover .tooltip {
+      display: block;
     }
 
-    .remember input {
-      margin-right: 5px;
+    .tooltip {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #333;
+      color: #fff;
+      padding: 8px 10px;
+      border-radius: 5px;
+      font-size: 13px;
+      white-space: nowrap;
+      margin-top: 5px;
+      z-index: 1000;
     }
   </style>
 </head>
 <body>
-  <div class="login-container">
-    <!-- Logo aumentada -->
-    <img src="https://i.imgur.com/mANQq50.png" alt="Logo da Fazenda">
+  <div class="container">
+    <img src="https://i.imgur.com/mANQq50.png" alt="Logo da Fazenda" class="logo">
 
- 
-    <h2>Login de Acesso</h2>
-    <form onsubmit="return verificarLogin();">
-      <input type="text" id="usuario" placeholder="Usuário" required><br>
-      <input type="password" id="senha" placeholder="Senha" required><br>
-      <label><input type="checkbox" id="lembrar"> Lembrar usuário</label><br>
-      <button type="submit">Entrar</button>
-    </form>
+    <div class="welcome-message">
+      <span style="font-size: 22px;">📊</span> Bem-vindo ao painel de indicadores da Diretoria.<br>
+      Aqui você encontrará dashboards estratégicos que auxiliam na tomada de decisão e monitoramento da operação.
+    </div>
+
+    <div class="button-group">
+      <a href="dashboard_diretoria.html">
+        <button>
+          Dashboard Diretoria
+          <span class="tooltip">Aplicações, preços de produtos, controle de estoque e análises de solo.</span>
+        </button>
+      </a>
+      <a href="dashboard_horaextra.html">
+        <button>
+          Dashboard Hora Extra
+          <span class="tooltip">Controle detalhado das horas extras totais e opracionais GSB e Solinftec</span>
+        </button>
+      </a>
+      <a href="dashboard_paradas_junho.html">
+        <button>
+          Dashboard Paradas (Junho)
+          <span class="tooltip">Análise de tempos de paradas de máquinas em junho.</span>
+        </button>
+      </a>
+      <a href="dashboard_solinftec.html">
+        <button>
+          Dashboard Solinftec
+          <span class="tooltip">Dados de telemetria operacional da Solinftec.</span>
+        </button>
+      </a>
+    </div>
   </div>
 
   <script>
-    const usuarios = {
-      "diretoria": { senha: "admin", pagina: "menu.html" },
-      "coa":       { senha: "1234", pagina: "página_coa.html" },
-      "lider":   { senha: "1234", pagina: "página_líderes.html" }
-    };
-
-    // Preenche automaticamente se houver cookie salvo
-    window.onload = () => {
-      const salvo = localStorage.getItem("usuario_salvo");
-      if (salvo) document.getElementById("usuario").value = salvo;
-    }
-
-    function verificarLogin() {
-      const usuario = document.getElementById("usuario").value.toLowerCase();
-      const senha = document.getElementById("senha").value;
-      const lembrar = document.getElementById("lembrar").checked;
-
-      if (usuarios[usuario] && usuarios[usuario].senha === senha) {
-        if (lembrar) {
-          localStorage.setItem("usuario_salvo", usuario);
-        } else {
-          localStorage.removeItem("usuario_salvo");
-        }
-        window.location.href = usuarios[usuario].pagina;
-      } else {
-        alert("Usuário ou senha incorretos");
-      }
-      return false;
-    }
+    // Salva a página atual como origem
+    sessionStorage.setItem("pagina_origem", window.location.href);
   </script>
 </body>
 </html>
