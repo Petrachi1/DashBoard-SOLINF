@@ -3,13 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <title>Dashboard Solinftec</title>
-</head>
-<body style="margin:0; padding:0;">
-  <h1 style="text-align:center;">Dashboard Operacional - Solinftec</h1>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+    }
 
-  <div style="text-align:center; margin-bottom: 20px;">
+    h2 {
+      text-align: center;
+      font-size: 32px;
+      margin: 30px 0 20px;
+      color: #2c3e50;
+    }
+
+    .voltar-container {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .voltar-container button {
+      padding: 12px 25px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .voltar-container button:hover {
+      background-color: #0056b3;
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+<body>
+  <h2>🚜 Dashboard Operacional - Solinftec</h2>
+
+  <div class="voltar-container">
     <a href="#" onclick="voltarParaOrigem()">
-      <button style="padding: 10px 20px; font-size: 16px;">⬅ Voltar para o Menu</button>
+      <button>⬅ Voltar para o Menu</button>
     </a>
   </div>
 
@@ -19,7 +56,7 @@
     height="800"
     src="https://app.powerbi.com/view?r=eyJrIjoiNmFkNTAxOWYtMTY3NS00MTMzLWJkNjItNTkzZTlmY2I5MjE2IiwidCI6Ijg4N2NmOTgxLTU2YTQtNGUwNC04Yjk3LTliMDJhNWY1MTM0NCJ9"
     frameborder="0"
-    allowFullScreen="true">
+    allowfullscreen="true">
   </iframe>
 
   <script>
