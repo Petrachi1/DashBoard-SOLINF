@@ -18,5 +18,11 @@
     frameborder="0"
     allowFullScreen="true">
   </iframe>
+
+   <script>
+    function voltarParaOrigem() {
+      const origem = sessionStorage.getItem("pagina_origem") || "index.html";
+      window.location.href = origem;
+    }
 </body>
 </html>
