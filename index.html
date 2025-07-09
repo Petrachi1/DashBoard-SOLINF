@@ -1,52 +1,74 @@
-<!DOCTYPE html>
-<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <title>Login - Dashboards</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #f5f5f5, #e0e0e0);
+      background: linear-gradient(to right, #f8f8f8, #e8e8e8);
       display: flex;
-      flex-direction: column;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       height: 100vh;
       margin: 0;
     }
+
     .login-container {
-      background-color: white;
-      padding: 30px;
+      background: white;
+      padding: 40px;
       border-radius: 10px;
-      box-shadow: 0 0 10px #aaa;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
       text-align: center;
+      width: 300px;
     }
-    input {
-      width: 200px;
-      padding: 8px;
-      margin: 10px;
-      font-size: 16px;
+
+    .login-container img {
+      width: 160px; /* Aumente esse valor conforme quiser */
+      margin-bottom: 20px;
     }
+
+    .login-container h2 {
+      margin-bottom: 20px;
+    }
+
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
     button {
       padding: 10px 20px;
       background-color: #007bff;
       color: white;
       border: none;
-      font-size: 16px;
-      cursor: pointer;
       border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
     }
-    img {
-      width: 120px;
-      margin-bottom: 20px;
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .remember {
+      display: flex;
+      align-items: center;
+      justify-content: left;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .remember input {
+      margin-right: 5px;
     }
   </style>
 </head>
 <body>
   <div class="login-container">
-    <!-- Substitua o link abaixo pela URL da sua logo -->
-    <img src="https://i.imgur.com/mANQq50.png">
-    
+    <!-- Logo aumentada -->
+    <img src="https://i.imgur.com/mANQq50.png" alt="Logo da Fazenda">
+
+ 
     <h2>Login de Acesso</h2>
     <form onsubmit="return verificarLogin();">
       <input type="text" id="usuario" placeholder="Usuário" required><br>
