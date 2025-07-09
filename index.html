@@ -1,28 +1,27 @@
 <head>
   <style>
     body {
-
       font-family: Arial, sans-serif;
-    background: url('https://i.imgur.com/LnZwyHx.jpeg') no-repeat center center fixed;
-    background-size: cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-  }
+      background: url('https://i.imgur.com/LnZwyHx.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
 
-  .login-container {
-    background: rgba(255, 255, 255, 0.95); /* fundo branco semi-transparente para melhor leitura */
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    width: 300px;
-  }
+    .login-container {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      width: 300px;
+    }
 
     .login-container img {
-      width: 200px; /* aumentar valor da imagem */
+      width: 200px;
       margin-bottom: 20px;
     }
 
@@ -64,14 +63,46 @@
     .remember input {
       margin-right: 5px;
     }
+
+    #error-msg {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #f44336;
+      color: white;
+      padding: 16px 24px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      font-weight: bold;
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    #error-bar {
+      height: 4px;
+      background-color: #ff7961;
+      width: 100%;
+      margin-top: 10px;
+      animation: progressBar 3s linear forwards;
+    }
+
+    @keyframes progressBar {
+      from { width: 100%; }
+      to { width: 0%; }
+    }
   </style>
 </head>
 <body>
+  <div id="error-msg">
+    Usuário ou senha incorretos
+    <div id="error-bar"></div>
+  </div>
+
   <div class="login-container">
-    <!-- Logo aumentada -->
     <img src="https://i.imgur.com/mANQq50.png" alt="Logo da Fazenda">
-
-
     <h2>Login de Acesso</h2>
     <form onsubmit="return verificarLogin();">
       <input type="text" id="usuario" placeholder="Usuário" required><br>
@@ -85,13 +116,24 @@
     const usuarios = {
       "diretoria": { senha: "admin", pagina: "menu.html" },
       "coa":       { senha: "1234", pagina: "página_coa.html" },
-      "lider":   { senha: "1234", pagina: "página_líderes.html" }
+      "lider":     { senha: "1234", pagina: "página_líderes.html" }
     };
 
-    // Preenche automaticamente se houver cookie salvo
     window.onload = () => {
       const salvo = localStorage.getItem("usuario_salvo");
       if (salvo) document.getElementById("usuario").value = salvo;
+    }
+
+    function mostrarErro() {
+      const erro = document.getElementById("error-msg");
+      erro.style.display = "block";
+      erro.style.opacity = "1";
+      setTimeout(() => {
+        erro.style.opacity = "0";
+        setTimeout(() => {
+          erro.style.display = "none";
+        }, 500);
+      }, 3000);
     }
 
     function verificarLogin() {
@@ -107,7 +149,7 @@
         }
         window.location.href = usuarios[usuario].pagina;
       } else {
-        alert("Usuário ou senha incorretos");
+        mostrarErro();
       }
       return false;
     }
