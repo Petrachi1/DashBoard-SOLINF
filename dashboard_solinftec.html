@@ -23,6 +23,10 @@
   </iframe>
 
   <script>
+    if (!sessionStorage.getItem("pagina_origem")) {
+      sessionStorage.setItem("pagina_origem", document.referrer || "index.html");
+    }
+
     function voltarParaOrigem() {
       const origem = sessionStorage.getItem("pagina_origem") || "index.html";
       window.location.href = origem;
