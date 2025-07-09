@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - Dashboards</title>
+</head>
+<body style="text-align:center; margin-top:100px;">
+  <h2>Login de Acesso</h2>
+  <form onsubmit="return verificarLogin();">
+    <input type="text" id="usuario" placeholder="Usuário" required><br><br>
+    <input type="password" id="senha" placeholder="Senha" required><br><br>
+    <button type="submit">Entrar</button>
+  </form>
+
+  <script>
+    function verificarLogin() {
+      const usuario = document.getElementById("usuario").value;
+      const senha = document.getElementById("senha").value;
+
+      // Usuários fictícios (em produção use um back-end)
+      const usuarios = {
+        "lider": { senha: "1234", pagina: "dashboard_tiemi.html" },
+        "Coa": { senha: "1234", pagina: "dashboard_junim.html" },
+        "Diretoria": { senha: "admin", pagina: "dashboard_diretoria.html" }
+      };
+
+      if (usuarios[usuario] && usuarios[usuario].senha === senha) {
+        window.location.href = usuarios[usuario].pagina;
+      } else {
+        alert("Usuário ou senha incorretos");
+      }
+      return false; // Impede o envio do formulário
+    }
+  </script>
+</body>
+</html>
