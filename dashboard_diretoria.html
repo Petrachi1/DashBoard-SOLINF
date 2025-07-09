@@ -7,7 +7,7 @@
 <body style="margin:0; padding:0;">
   <h2 style="text-align:center;">Dashboard da Diretoria</h2>
   <div style="text-align:center; margin-bottom: 20px;">
-    <a href="index.html">
+    <a href="#" onclick="voltarParaOrigem()">
       <button style="padding: 10px 20px; font-size: 16px;">⬅ Voltar para o Menu</button>
     </a>
   </div>
@@ -18,5 +18,12 @@
     frameborder="0"
     allowFullScreen="true">
   </iframe>
+
+  <script>
+    function voltarParaOrigem() {
+      const origem = sessionStorage.getItem("pagina_origem") || "index.html";
+      window.location.href = origem;
+    }
+  </script>
 </body>
 </html>
