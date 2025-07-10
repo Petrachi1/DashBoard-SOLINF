@@ -58,15 +58,22 @@
     allowFullScreen="true">
   </iframe>
 
-  <script>
-    if (!sessionStorage.getItem("pagina_origem")) {
-      sessionStorage.setItem("pagina_origem", document.referrer || "index.html");
-    }
+ <script>
+  // Bloqueia acesso direto sem login
+  if (sessionStorage.getItem("usuario_autenticado") !== "true") {
+    window.location.href = "index.html"; // redireciona se não estiver logado
+  }
 
-    function voltarParaOrigem() {
-      const origem = sessionStorage.getItem("pagina_origem") || "index.html";
-      window.location.href = origem;
-    }
-  </script>
+  // Salva a página de origem, se ainda não estiver registrada
+  if (!sessionStorage.getItem("pagina_origem")) {
+    sessionStorage.setItem("pagina_origem", document.referrer || "index.html");
+  }
+
+  // Função para voltar para a origem
+  function voltarParaOrigem() {
+    const origem = sessionStorage.getItem("pagina_origem") || "index.html";
+    window.location.href = origem;
+  }
+</script>
 </body>
 </html>
