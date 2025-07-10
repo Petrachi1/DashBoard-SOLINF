@@ -141,23 +141,28 @@
       }, 3000);
     }
 
-    function verificarLogin() {
-      const usuario = document.getElementById("usuario").value.toLowerCase();
-      const senha = document.getElementById("senha").value;
-      const lembrar = document.getElementById("lembrar").checked;
+  function verificarLogin() {
+  const usuario = document.getElementById("usuario").value.toLowerCase();
+  const senha = document.getElementById("senha").value;
+  const lembrar = document.getElementById("lembrar").checked;
 
-      if (usuarios[usuario] && usuarios[usuario].senha === senha) {
-        if (lembrar) {
-          localStorage.setItem("usuario_salvo", usuario);
-        } else {
-          localStorage.removeItem("usuario_salvo");
-        }
-        window.location.href = usuarios[usuario].pagina;
-      } else {
-        mostrarErro();
-      }
-      return false;
+  if (usuarios[usuario] && usuarios[usuario].senha === senha) {
+    if (lembrar) {
+      localStorage.setItem("usuario_salvo", usuario);
+    } else {
+      localStorage.removeItem("usuario_salvo");
     }
+
+    // Marcar como autenticado
+    sessionStorage.setItem("usuario_autenticado", "true");
+
+    window.location.href = usuarios[usuario].pagina;
+  } else {
+    mostrarErro();
+  }
+  return false;
+}
+
   </script>
 </body>
 </html>
